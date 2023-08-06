@@ -6,7 +6,6 @@ Repository for a Software design project
 <b>Title: Creating a user</b>
 
 <img src="img/creating_user.png" alt="" width="600" height="700">
-<br>
 
 What we see happening in the first sequence diagram is a new user being created by the user of the program. He selects the “Create user” button, and is therefore sent to the “create username” pane. Here he writes in his username. 
 Behind the scenes, the setName() method takes in his username. After this, we enter the alternative cell, where the AppUI class then checks in the userJSONArray if the username already exists. It also checks if the username is valid. If it already exists and is not a valid username, an error is thrown out. If it does not exist and is valid, the user is created and saved within the userJSONArray. 
@@ -20,7 +19,6 @@ Afterwards, the user is told that the username was valid and a username is creat
 This sequence diagram starts with the user selecting the “Import” button they are faced with on the main page. The button click sends its signal to the FileChooser class and creates a new instance of the class, a window that lets the user select a file. After this interaction, we enter the alternative cell.
 
 The Button is destroyed at the start of the diagram, illustrating that after it is done being used, it does not matter anymore.
-
 If the file that the user selects is not valid, either the file equals null or it is not a readable GPX file. This results in an error that is thrown to the user. This error also launches a new FileChooser window for the user, giving them a second chance at selecting a file. Given that the file is valid and does not equal null, we enter the loop cell within our alternative cell. The file is then read and parsed. This is illustrated with the arrow after (Number 6), where they go from the same object around and then back to itself again. This loops as many times as possible, until either of the conditions become false. The parsed information is saved within the Activity class with every iteration of the loop, illustrated by (Number 12).
 
 
@@ -29,7 +27,8 @@ If the file that the user selects is not valid, either the file equals null or i
 - User
 
     <img src="img/users.png" alt="" width="600" height="400">
-    - The figure above illustrates the UML state diagram of the User. The diagram shows how a user initialises the app on the opening page. The app is designed to run with a basic user interface and a user account that associates with the database. Firstly, the app will ask a user whether the user has their own user account or not on the starting panel. So the user must choose either login or create a user account to manipulate the entire system that we implemented before starting an activity or importing a GPX file.
+    
+The figure above illustrates the UML state diagram of the User. The diagram shows how a user initialises the app on the opening page. The app is designed to run with a basic user interface and a user account that associates with the database. Firstly, the app will ask a user whether the user has their own user account or not on the starting panel. So the user must choose either login or create a user account to manipulate the entire system that we implemented before starting an activity or importing a GPX file.
 
 
 - Activity
