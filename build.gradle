@@ -1,0 +1,60 @@
+plugins {
+    id 'java'
+    id 'application'
+    id 'org.openjfx.javafxplugin' version '0.0.10'
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 11
+
+repositories {
+    mavenCentral()
+    flatDir {
+        dirs 'libs'
+    }
+}
+
+dependencies {
+    // JavaFX SDK is loaded via the plugins
+    // JavaFX SDK is also located in the 'libs' directory, in case it is needed for modules import
+
+    /* json-io */
+    implementation group: 'com.googlecode.json-simple', name: 'json-simple', version: '1.1.1'
+
+    /* jpx */
+    implementation group: 'io.jenetics', name: 'jpx', version: '2.3.0'
+
+    /* Unfolding and helper libraries to support it*/
+    implementation name: 'unfolding.0.9.6'
+    implementation name: 'core'
+    implementation name: 'gluegen-rt'
+    implementation name: 'jogl-all'
+    implementation name: 'gluegen-rt-natives-windows-amd64'
+    implementation name: 'jogl-all-natives-windows-amd64'
+    implementation group: 'log4j', name: 'log4j', version: '1.2.17'
+
+    /* Helper library to operate on file streams */
+    implementation group: 'org.scijava', name: 'scijava-common', version: '2.87.0'
+
+    testImplementation group: 'junit', name: 'junit', version: '4.13.1'
+}
+
+// JavaFX plugin configuration
+javafx {
+    version = "17.0.2"
+    modules = [ 'javafx.controls', 'javafx.web', 'javafx.base', 'javafx.fxml', 'javafx.graphics', 'javafx.media',
+                'javafx.swing']
+}
+
+// JAR building configuration
+jar {
+    manifest {
+        attributes "Main-Class": "softwaredesign.Main"
+    }
+
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}
